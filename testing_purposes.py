@@ -1,9 +1,13 @@
 from file_functions import Fily
-import json
+import json as js
 
 with open('file.json', 'r') as f:
-    data = json.load(f)
+    data = js.load(f)
+
+
 
 # print(type(data))
 obj = Fily()
-print(obj.Raw_Data_To_Normal(data))
+new = obj.Raw_Data_To_Normal(data)
+# print("***NEW DATA****: ",new)
+print(obj.data_appender(new_data=new))
