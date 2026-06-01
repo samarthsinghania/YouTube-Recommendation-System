@@ -1,8 +1,10 @@
 import json as js 
+import numpy as np
+
 
 class Fily:
     def __init__(self):
-        pass
+        self.special = np.array(list(set(list(";@!$%#^&*(_-+={[|//,\\?.,<>~`:;']})"))))
 
     def Raw_Data_To_Normal(self, raw_dict): 
         '''This method Takes in Raw_Response from YouTube and returns as in this format:
@@ -22,7 +24,7 @@ class Fily:
         '''This method takes 1 parameters: 
         1. new_data -> in dict form(Which basically is what to be appended)'''
 
-        file_path = "NormalDadta.json"
+        file_path = "NormalData.json"
 
         try:
             with open(file_path,"r") as f:
@@ -40,5 +42,29 @@ class Fily:
             return "General: Error came oh no!"
         else: #no error return 1
             return 1
+    #word extractor
+    def word_extractor(self, unbaked, baked=[]):
+        '''(This is a Recursion Method, Thank God it was in my mind)
+        This method takes 1 parameter -> array  (of all words)
+        Then It returns a array with seperated new words'''
 
+        #make new list, empty, keep adding in it easy,
+        for word in unbaked:
+            for char in word:
+                if char in self.special: #if special character
+                    # unbaked.append(word.split(char)) 
+                    unbaked = unbaked + word.split(char) #add splitted word
+                    unbaked.remove(word) #remove word from orignal copied list 
+                    break
+            else:
+                unbaked.remove(word)
+                baked.append(word)
+        
+        if unbaked ==[]:
+            return baked
+        else:
+            return self.word_extractor(unbaked,baked)
+
+            
+        
         
