@@ -9,8 +9,10 @@ youtube = build("youtube", "v3", developerKey=api_key)
 request = youtube.search().list(
         q="A Day In The Life of A Software Engineer In Mumbai | Blockchain Developer | SB Jain College Nagpur", #thing to search
         part="snippet",   
-        type="video", #video ho
-        maxResults=5
+        type="video", #Type
+        maxResults=5, #how many results
+        regionCode="IN", #Country
+        videoEmbeddable="true", #Video Embeddable
     )
 response = request.execute()
 

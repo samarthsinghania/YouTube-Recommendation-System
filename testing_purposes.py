@@ -18,7 +18,7 @@ obj = Fily()
 # print(obj.word_extractor(string.split()))
 
 print(obj.tag_extractor('m0hEJCxojWg'))
-
+print(obj.raw_vidData_maker("Pizza videos", 10, "IN"))
 # from YoutubeTags import videotags
 
 # video = "https://www.youtube.com/watch?v=m0hEJCxojWg"

@@ -1,10 +1,12 @@
 import json as js 
 import numpy as np
 from YoutubeTags import videotags # for tag extraction
+from googleapiclient.discovery import build #for youtube extraction
 
 class Fily:
     def __init__(self):
-        self.special = np.array(list(set(list(";@!$%#^&*(_-+={[|//,\\?.,<>~`:;']})"))))
+        self.special = set(";@!$%#^&*(_-+={[|//,\\?.,<>~`:;']})") #edited to set here
+        self.api_key = 'AIzaSyBKee1FNNg0jxGpCGqwywjJbLRrYGrsnIo'
 
     def Raw_Data_To_Normal(self, raw_dict): 
         '''This method Takes in Raw_Response from YouTube and returns as in this format:
@@ -73,6 +75,33 @@ class Fily:
 
         return [item.strip() for item in tag]
     
+    def raw_data_gen(self, query,max,countrycode="IN"):
+        '''This Function takes 3 Parameters: 
+         1. query(like which topic)
+         2. max (max videos you want in output)
+         3. countrycode-> from which country video should be
+         
+         Return 1 for successful 
+         Otherwise 0'''
+        youtube = build("youtube", "v3", developerKey=self.api_key)
+
+        request = youtube.search().list(
+            q= query, #thing to search
+            part="snippet",   
+            type="video", #Type
+            maxResults= max, #how many results
+            regionCode= countrycode, #Country
+            relevanceLanguage="en",
+            videoEmbeddable="true", #Video Embeddable
+        )
+        response = request.execute()
+        try: 
+            with open('file.json','w') as f:
+                js.dump(response,f)
+        except Exception as e:
+            return 0
+        else:
+            return 1
 
 
 
