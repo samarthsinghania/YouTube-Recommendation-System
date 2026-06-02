@@ -1,6 +1,6 @@
 import json as js 
 import numpy as np
-
+from YoutubeTags import videotags # for tag extraction
 
 class Fily:
     def __init__(self):
@@ -64,6 +64,17 @@ class Fily:
             return baked
         else:
             return self.word_extractor(unbaked,baked)
+        
+    def tag_extractor(self,vidid):
+        '''Takes video id, returns tags in a list'''
+        link = f"https://www.youtube.com/watch?v={vidid}"
+
+        tag = videotags(link).split(",")
+
+        return [item.strip() for item in tag]
+    
+
+
 
             
         
