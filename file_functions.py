@@ -46,7 +46,7 @@ class Fily:
             return 1
     #word extractor
     def word_extractor(self, unbaked, baked=[]):
-        '''(This is a Recursion Method, Thank God it was in my mind)
+        '''(This is a Recursion Method, Thank God it was in my mind) 
         This method takes 1 parameter -> array  (of all words)
         Then It returns a array with seperated new words'''
 
@@ -93,6 +93,7 @@ class Fily:
             regionCode= countrycode, #Country
             relevanceLanguage="en",
             videoEmbeddable="true", #Video Embeddable
+            videoDuration= 'medium' #Remove Shorts (Keep video Between 4-20 minutes)
         )
         response = request.execute()
         try: 
@@ -104,9 +105,10 @@ class Fily:
             return 1
         
     def vector_creator(self, words, set_vectorformat):
-        "This Function takes 2 parameters:"
-        "1. words: All the words of given video in list format"
-        "2. set_vectorformat: The All-words vector in set form"
+        '''This Function takes 2 parameters:
+        1. words: All the words of given video in list format
+        2. set_vectorformat: The All-words vector in set form
+        And returns the vector in list form'''
         list_vectorformat = list(set_vectorformat)
         vector = np.zeros(len(list_vectorformat),dtype=np.int8)
         for word in words:

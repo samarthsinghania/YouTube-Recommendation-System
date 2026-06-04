@@ -14,8 +14,10 @@ from file_functions import Fily
 #test:
 obj = Fily()
 
-s = {'pizza', 'pineapple','ketchup',"mayo","newyork"}
-word = ['pineapple', 'mayo']
-print(s)
-print(obj.vector_creator(word,s))
+# s = {'pizza', 'pineapple','ketchup',"mayo","newyork"}
+# word = ['pineapple', 'mayo']
+# print(s)
+# print(obj.vector_creator(word,s))
 
+
+obj.raw_data_gen("Pizza",4)
