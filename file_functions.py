@@ -102,6 +102,23 @@ class Fily:
             return 0
         else:
             return 1
+        
+    def vector_creator(self, words, set_vectorformat):
+        "This Function takes 2 parameters:"
+        "1. words: All the words of given video in list format"
+        "2. set_vectorformat: The All-words vector in set form"
+        list_vectorformat = list(set_vectorformat)
+        vector = np.zeros(len(list_vectorformat),dtype=np.int8)
+        for word in words:
+            if word in set_vectorformat: #if inside set,
+                index = list_vectorformat.index(word)
+                vector[index] = 1
+            else:
+                return "Error: word not found in set HOW"
+            
+        return vector.tolist() #return List form of that vector
+    
+
 
 
 

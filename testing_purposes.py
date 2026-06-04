@@ -1,28 +1,21 @@
+# import json as js
+# l = list({1,2,3,4})
+# with open('vectorformat.json','w') as f:
+#     js.dump(l,f)
+import numpy as np
+
 from file_functions import Fily
-import json as js
 
-# with open('file.json', 'r') as f:
-#     data = js.load(f)
+# v = np.zeros(5,dtype=np.int8)
+# v[3]=1
 
+# print(v.tolist())
 
-
-# # print(type(data))
+#test:
 obj = Fily()
-# new = obj.Raw_Data_To_Normal(data)
-# # print("***NEW DATA****: ",new)
-# print(obj.data_appender(new_data=new))
 
+s = {'pizza', 'pineapple','ketchup',"mayo","newyork"}
+word = ['pineapple', 'mayo']
+print(s)
+print(obj.vector_creator(word,s))
 
-# string = "Hey GUYS$Welcome_BACK_TO_my_Channel_YO"
-# print("^" in obj.special)
-# print(obj.word_extractor(string.split()))
-
-print(obj.tag_extractor('m0hEJCxojWg'))
-print(obj.raw_vidData_maker("Pizza videos", 10, "IN"))
-# from YoutubeTags import videotags
-
-# video = "https://www.youtube.com/watch?v=m0hEJCxojWg"
-
-# tag = videotags(video).split(",")
-
-# print([item.strip() for item in tag])
