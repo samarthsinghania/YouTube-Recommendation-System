@@ -136,7 +136,27 @@ class Fily:
             return f"0 Error came oh no..{e}"
         else:
             return 1
+        
+    def cache_updater(self, vid_id):
+        try:
+            with open("vid_detail_streamlit.json", 'r') as f:
+                loaded_streamlit_dic = js.load(f)
+            
+        except Exception as e:
+            return f"0 Error came oh no..{e}"
+        else:
+            try:
+                temporary = loaded_streamlit_dic['cache'] #returns List in cache
+                temporary.insert(0,vid_id)                  #add vid id at index 0
+                temporary.pop()                             #remove very last index item
 
+                loaded_streamlit_dic['cache'] = temporary
+                with open("vid_detail_streamlit.json", 'w') as f:
+                    js.dump(loaded_streamlit_dic,f)
+            except Exception as e2:
+                return f"Error oh no..{e2}"
+            else:
+                return 1
             
         
         
