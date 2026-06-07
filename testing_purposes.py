@@ -1,14 +1,10 @@
-import json as js
-d ={'a': [1,0,1] ,'b': [0,0,1], 'c': [1,0,1],'d': [1,1,0],'e': [0,0,0],'g': [1,0,1]}
-with open("vector.json", "w") as f:
-    js.dump(d,f)
+# import json as js
+# d ={'cache':[0,0,0,0,0,0],'vids':[f'id{i}' for i in range(1,13) ]}
+# with open("vid_detail_streamlit.json", "w") as f:
+#     js.dump(d,f)
 
-from main import main_control as m
+from file_functions import Fily
 
-test_vector = [1,1,1]
-obj = m()
+obj = Fily()
 
-print(obj.cosine_similar_top_n('g',4))
-
-# l = [1,4,2]
-# print(sorted(l,reverse=True))
+print(obj.vids_streamlit_updater([1,2,3,4,5,6]))

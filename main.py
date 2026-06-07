@@ -4,6 +4,7 @@ import json as js
 class main_control:
     def __init__(self):
         self.vidid = None
+        #To Do: Random video'er here(which puts random videos for first time)
 
     def cosine_similar_top_n(self, given_vector_id, quantity):
         '''This function takes in 2 Parameters:

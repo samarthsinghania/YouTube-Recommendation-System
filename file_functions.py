@@ -120,9 +120,22 @@ class Fily:
             
         return vector.tolist() #return List form of that vector
     
+    
+    def vids_streamlit_updater(self, vid_list):
+        '''This Method takes the updated vid_list and updates it in file vid_detail_streamlit.json's
+        vid_streamlit key.
+        Reuturn 1 for Successfull Execution Otherwise 0'''
 
-
-
+        try:
+            with open("vid_detail_streamlit.json", 'r') as f:
+                loaded_streamlit_dic = js.load(f)
+            loaded_streamlit_dic["vids_streamlit"] = vid_list
+            with open("vid_detail_streamlit.json", 'w') as f:
+                js.dump(loaded_streamlit_dic,f)
+        except Exception as e:
+            return f"0 Error came oh no..{e}"
+        else:
+            return 1
 
             
         
