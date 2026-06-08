@@ -22,11 +22,13 @@ class Fily:
             vid[vidID] = [thumbnail_path,title,description]
         return vid
 
-    def data_appender(self, new_data):
+    def dictionary_data_appender(self, new_data, file_path):
         '''This method takes 1 parameters: 
-        1. new_data -> in dict form(Which basically is what to be appended)'''
-
-        file_path = "NormalData.json"
+        1. new_data -> in dict form(Which basically is what to be appended)
+        2. file_path -> the files' path
+        This functions appends something to a dictionary in a folder ok,'''
+        
+        # file_path = "NormalData.json"
 
         try:
             with open(file_path,"r") as f:
