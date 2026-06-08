@@ -140,6 +140,8 @@ class Fily:
             return 1
         
     def cache_updater(self, vid_id):
+        '''This functoin takes in latest video  id to be updated in key "cache" of
+        vid_detail_streamlit.json and updates it'''
         try:
             with open("vid_detail_streamlit.json", 'r') as f:
                 loaded_streamlit_dic = js.load(f)
