@@ -7,5 +7,6 @@ from file_functions import Fily
 
 obj = Fily()
 
-print(obj.vids_streamlit_updater([1,2,3,4,5,"meowj"]))
-print(obj.cache_updater('id8'))
+print(obj.word_extractor(['hello HEyyy+MROW LK^#$SHARMA@#SIRR my name is# /samarth singhania', 'hi ho'], lower=True))
+# print(obj.vids_streamlit_updater([1,2,3,4,5,"meowj"]))
+# print(obj.cache_updater('id8'))

@@ -5,7 +5,7 @@ from googleapiclient.discovery import build #for youtube extraction
 
 class Fily:
     def __init__(self):
-        self.special = set(";@!$%#^&*(_-+={[|//,\\?.,<>~`:;']})") #edited to set here
+        self.special =  '''"&*(_#-+={$^@[|//,\\?.,<>~`:;']})"''' #edited to set here
         self.api_key = 'AIzaSyBKee1FNNg0jxGpCGqwywjJbLRrYGrsnIo'
 
     def Raw_Data_To_Normal(self, raw_dict): 
@@ -45,28 +45,28 @@ class Fily:
         else: #no error return 1
             return 1
     #word extractor
-    def word_extractor(self, unbaked, baked=[]):
-        '''(This is a Recursion Method, Thank God it was in my mind) 
+    def word_extractor(self, given_words, lower=False):
+        '''(This is a Recursion Method)
         This method takes 1 parameter -> array  (of all words)
+        Special lower Parameter: True means convert to lower, else false
         Then It returns a array with seperated new words'''
 
-        #make new list, empty, keep adding in it easy,
-        for word in unbaked:
-            for char in word:
-                if char in self.special: #if special character
-                    # unbaked.append(word.split(char)) 
-                    unbaked = unbaked + word.split(char) #add splitted word
-                    unbaked.remove(word) #remove word from orignal copied list 
-                    break
-            else:
-                unbaked.remove(word)
-                baked.append(word)
+        #Plan Use Translate table and str.translate() method for this
+
+        translate_table =  str.maketrans({i:" " for i in self.special})
         
-        if unbaked ==[]:
-            return baked
+        output_words = []
+        try: 
+            for word in given_words:
+                if lower ==True:
+                    word = word.lower()
+                new_word_list  = (word.translate(translate_table)).split()
+                output_words = output_words + new_word_list
+        except Exception as e:
+            return f"Oh no error..{e}"
         else:
-            return self.word_extractor(unbaked,baked)
-        
+            return output_words
+
     def tag_extractor(self,vidid):
         '''Takes video id, returns tags in a list'''
         link = f"https://www.youtube.com/watch?v={vidid}"

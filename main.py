@@ -43,3 +43,4 @@ class main_control:
             topn.append(sorted_cosine_list[i][0])
         
         return topn
+    
