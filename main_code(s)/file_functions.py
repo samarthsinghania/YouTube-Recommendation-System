@@ -99,7 +99,7 @@ class Fily:
         )
         response = request.execute()
         try: 
-            with open('file.json','w') as f:
+            with open('raw_data.json','w') as f:
                 js.dump(response,f)
         except Exception as e:
             return 0
