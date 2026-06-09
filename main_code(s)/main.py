@@ -13,7 +13,7 @@ class main_control:
         Returns the vid id of top n in list format'''
 
         
-        with open("vector.json", "r") as f:
+        with open("vector.json", "r") as f: #vectorjso contains
             vidinfo = js.load(f)
             
         #its(vidinfo) in form: d ={'vidid': vector,..}
