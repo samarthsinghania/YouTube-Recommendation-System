@@ -8,19 +8,28 @@ class Fily:
         self.special =  '''"&*(_#-+={$^@[|//,\\?.,<>~`:;']})"''' #edited to set here
         self.api_key = 'AIzaSyBKee1FNNg0jxGpCGqwywjJbLRrYGrsnIo'
 
-    def Raw_Data_To_Normal(self, raw_dict): 
-        '''This method Takes in Raw_Response from YouTube and returns as in this format:
-        {vidId: [thumbnail_path, title, description]}'''
+    def Raw_Data_To_Normal(self): 
+        '''This method takes data from raw_data.json
+        and appends to to normal_data.json'''
+
+        with open("raw_data.json", 'r') as f:
+            raw_dict = js.load(f)
 
         videos = raw_dict['items'] #this return list containing video as dict
         vid = {}
-        for video in videos: #return each video dict
-            vidID = video['id']['videoId'] #2dict
-            title = video["snippet"]["title"]
-            description = video["snippet"]["description"]
-            thumbnail_path = video["snippet"]["thumbnails"]["high"]["url"]
-            vid[vidID] = [thumbnail_path,title,description]
-        return vid
+        try:
+            for video in videos: #return each video dict
+                vidID = video['id']['videoId'] #2dict
+                title = video["snippet"]["title"]
+                description = video["snippet"]["description"]
+                thumbnail_path = video["snippet"]["thumbnails"]["high"]["url"]
+                vid[vidID] = [thumbnail_path,title,description]
+        except Exception as e:
+            return f"0, error cam oh no,{e}"
+        else:
+            self.dictionary_data_appender(vid,"main_code(s)/Json_files/normal_data.json")
+            return 1
+        
 
     def dictionary_data_appender(self, new_data, file_path):
         '''This method takes 1 parameters: 
