@@ -86,11 +86,10 @@ class Fily:
 
         return [item.strip() for item in tag]
     
-    def raw_data_gen(self, query,max,countrycode="IN"):
+    def raw_data_gen(self, query,max):
         '''This Function takes 3 Parameters: 
          1. query(like which topic)
          2. max (max videos you want in output)
-         3. countrycode-> from which country video should be
          
          Return 1 for successful 
          Otherwise 0'''
@@ -101,7 +100,6 @@ class Fily:
             part="snippet",   
             type="video", #Type
             maxResults= max, #how many results
-            regionCode= countrycode, #Country
             relevanceLanguage="en",
             videoEmbeddable="true", #Video Embeddable
             videoDuration= 'medium' #Remove Shorts (Keep video Between 4-20 minutes)
