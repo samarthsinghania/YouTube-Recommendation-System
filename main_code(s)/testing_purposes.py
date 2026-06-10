@@ -1,7 +1,11 @@
 import json as js
 from file_functions import Fily
 
-with open('main_code(s)/Json_files/normal_data.json', 'r') as f:
-    w = js.load(f)
+with open('main_code(s)/Json_files/video_words.json', 'w') as f:
+    w = js.dump({},f)
 
-print(len(w))
+# # print(len(w)
+
+# obj = Fily()
+
+# obj.video_all_words_gen()

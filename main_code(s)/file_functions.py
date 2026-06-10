@@ -169,5 +169,27 @@ class Fily:
             else:
                 return 1
             
-        
-        
+    def video_all_words_gen(self):
+        with open("main_code(s)/Json_files/normal_data.json", 'r') as f:
+            normal_data = js.load(f) #this is a dictionary
+        count =0
+        try:
+            for vid_id in normal_data:
+                
+                normal_vid_data = normal_data[vid_id] # [thumbnail_link, "title",'description']
+                title_description = self.word_extractor(normal_vid_data[1:]) #title and description only
+                
+                #now tags:
+                tags = self.word_extractor(self.tag_extractor(vid_id))
+                
+                vid_all_words = title_description+tags
+                to_append = {vid_id:vid_all_words}
+                self.dictionary_data_appender(to_append,'main_code(s)/Json_files/video_words.json')
+                
+                count+=1
+                print(f'Done: {count},{normal_vid_data[1][:20]}')
+                
+        except Exception as e:
+            return f"0 Oh no error. {e}"
+        else:
+            return 1
