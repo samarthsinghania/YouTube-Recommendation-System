@@ -188,8 +188,29 @@ class Fily:
                 
                 count+=1
                 print(f'Done: {count},{normal_vid_data[1][:20]}')
-                
+
         except Exception as e:
             return f"0 Oh no error. {e}"
+        else:
+            return 1
+        
+    def bad_words_deleter(self):
+        '''So this method is bascially for if you want to remove specific video which contains:
+        1. bad words you specifiy
+        updates it to video_words.json'''
+
+        non_veg = {"chicken", "fish","anda","murga","meat", "egg", "eggs", "mutton", "beef", "pork", "lamb", "prawn", "shrimp", "crab", "lobster", "bacon", "turkey"}
+
+        with open('main_code(s)/Json_files/video_words.json', 'r') as f:
+            data = js.load(f)
+
+        clean = {vid_id: words for vid_id, words in data.items()
+                if not any(word.lower() in non_veg for word in words)}
+            
+        try:
+            with open('main_code(s)/Json_files/video_words.json', 'w') as f:
+                js.dump(clean,f)
+        except Exception as e:
+            return f"0 oh no error, {e}"
         else:
             return 1
