@@ -53,8 +53,7 @@ topics = [
 obj = Fily()
 
 for query in topics:
-
     obj.raw_data_gen(query=query, max=50)
-
     obj.Raw_Data_To_Normal()
+    print(f'Done: {query}')
 

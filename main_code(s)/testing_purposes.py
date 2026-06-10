@@ -1,7 +1,7 @@
 import json as js
 from file_functions import Fily
 
-with open('main_code(s)/Json_files/normal_data.json', 'w') as f:
-    js.dump({},f)
+with open('main_code(s)/Json_files/normal_data.json', 'r') as f:
+    w = js.load(f)
 
-obj = Fily()
+print(len(w))
