@@ -178,6 +178,8 @@ class Fily:
         with open("main_code(s)/Json_files/normal_data.json", 'r') as f:
             normal_data = js.load(f) #this is a dictionary
         count =0
+
+        final_dic = {}
         try:
             for vid_id in normal_data:
                 
@@ -188,10 +190,12 @@ class Fily:
                 tags = self.word_extractor(self.tag_extractor(vid_id))
                 vid_all_words = title_description+tags
                 to_append = {vid_id:vid_all_words}
-                self.dictionary_data_appender(to_append,'main_code(s)/Json_files/video_words.json')
+
+                final_dic.update(to_append)
                 
                 count+=1
                 print(f'Done: {count},{normal_vid_data[1][:20]}')
+            self.dictionary_data_appender(final_dic,'main_code(s)/Json_files/video_words.json')
 
         except Exception as e:
             return f"0 Oh no error. {e}"
