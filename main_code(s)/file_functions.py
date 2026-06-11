@@ -78,11 +78,16 @@ class Fily:
         else:
             return output_words
 
-    def tag_extractor(self,vidid):
-        '''Takes video id, returns tags in a list'''
+    def tag_extractor(self,vidid, lower=True):
+        '''Takes video id, returns tags in a list
+        lower Parameter | Bool, bascially if true convert to lower'''
         link = f"https://www.youtube.com/watch?v={vidid}"
-
-        tag = videotags(link).split(",")
+        #videotags() return in this format: "seo, chatgpt, seotips" (string)
+        
+        if lower:
+            tag = videotags(link).lower().split(",")
+        else:
+            tag = videotags(link).split(",")
 
         return [item.strip() for item in tag]
     
@@ -181,7 +186,6 @@ class Fily:
                 
                 #now tags:
                 tags = self.word_extractor(self.tag_extractor(vid_id))
-                
                 vid_all_words = title_description+tags
                 to_append = {vid_id:vid_all_words}
                 self.dictionary_data_appender(to_append,'main_code(s)/Json_files/video_words.json')
@@ -235,6 +239,4 @@ class Fily:
             return f"0, Oof error.. how. {e}"
         else:
             return 1
-            
-
             
