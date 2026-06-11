@@ -243,4 +243,22 @@ class Fily:
             return f"0, Oof error.. how. {e}"
         else:
             return 1
-            
+        
+    def all_videos_vector_json_maker(self):
+        '''This Method creates videos Vectors in vector.json'''
+        
+        with open('main_code(s)/json_files/all_video_words.json', 'r') as f:
+            all_word_list = js.load(f)
+
+        with open('main_code(s)/json_files/video_words.json','r') as f:
+            all_vid_words = js.load(f)
+        
+        all_video_vectors_dic = {}
+        
+        for vid_id in all_vid_words:
+            vid_lis = all_vid_words[vid_id]
+            vector = self.vector_creator(vid_lis,all_word_list)
+            all_video_vectors_dic[vid_id] = vector
+        
+        with open('main_code(s)/json_files/vector.json','w') as f:
+            js.dump(all_video_vectors_dic,f)
