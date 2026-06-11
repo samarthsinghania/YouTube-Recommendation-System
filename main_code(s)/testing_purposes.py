@@ -13,6 +13,9 @@ obj = Fily()
 # obj.bad_words_deleter()
 
 
-with open('main_code(s)/Json_files/video_words.json', 'r') as f:
-    w = js.load(f)
-print(len(w))
+# with open('main_code(s)/Json_files/video_words.json', 'r') as f:
+#     w = js.load(f)
+print(obj.all_vector_words_creator())
+
+L = ['hi','meow','cat']
+print(set(L))

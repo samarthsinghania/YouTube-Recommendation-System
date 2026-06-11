@@ -214,3 +214,27 @@ class Fily:
             return f"0 oh no error, {e}"
         else:
             return 1
+        
+    def all_vector_words_creator(self):
+        with open("main_code(s)/json_files/video_words.json", 'r') as f:
+            all_video_dic = js.load(f)
+
+        all_word_list = list()
+        count= 0
+        for vid_id in all_video_dic:
+            count +=1
+            video_list = all_video_dic[vid_id]
+            all_word_list = all_word_list + video_list
+            if count ==10:
+                all_word_list = list(set(all_word_list))
+                count = 0
+        try:
+            with open('main_code(s)/json_files/all_video_words.json', 'w') as f:
+                js.dump(all_word_list,f)
+        except Exception as e:
+            return f"0, Oof error.. how. {e}"
+        else:
+            return 1
+            
+
+            
