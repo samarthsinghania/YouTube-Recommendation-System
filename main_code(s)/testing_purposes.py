@@ -1,5 +1,6 @@
 import json as js
 from file_functions import Fily
+from core_functions import main_control
 
 # with open('main_code(s)/Json_files/video_words.json', 'w') as f:
 #     w = js.dump({},f)
@@ -38,4 +39,17 @@ obj = Fily()
 #     js.dump(new_dic,f)
 
 "Making vector.json"
-obj.all_videos_vector_json_maker()
+# obj.all_videos_vector_json_maker()
+
+
+"MAIN"
+
+o = main_control()
+
+import time
+
+current_time=time.time()
+
+print(o.cosine_similar_top_n('1etaZ5ITXlg',2))
+
+print("time taken: ",time.time()-current_time)
