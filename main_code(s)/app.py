@@ -50,115 +50,67 @@ image_lis2 = ["https://images.unsplash.com/photo-1565372195458-9de0b320ef04?w=70
 # )
 # st.markdown(f"Image #{clicked} clicked" if clicked > -1 else "No image clicked")
 
+videos = [
+    {
+        "id": "vid1",
+        "title": "Linear Regression Explained",
+        "channel": "StatQuest",
+        "img": image_lis[0]
+    },
+    {
+        "id": "vid2",
+        "title": "Neural Networks Amazing video man just watch it!",
+        "channel": "The Young Technical Guy",
+        "img": image_lis[1]
+    },
+    {
+        "id": "vid3",
+        "title": "Neural Networks",
+        "channel": "3Blue1Brown",
+        "img": image_lis[1]
+    },
+    {
+        "id": "vid4",
+        "title": "Neural Networks",
+        "channel": "3Blue1Brown",
+        "img": image_lis[1]
+    },
+    {
+        "id": "vid5",
+        "title": "Neural Networks",
+        "channel": "3Blue1Brown",
+        "img": image_lis[1]
+    }
+    # ...
+]
+cards = ""
+
+for video in videos:
+
+    cards += f"""
+    <div style="width:350px;">
+        <a href='#' id='{video["id"]}'>
+            <img
+                src='{video["img"]}'
+                style='width:100%; border-radius:12px;'
+            >
+        </a>
+
+        <h4>{video["title"]}</h4>
+
+        <p style='color:gray;'>
+            {video["channel"]}
+        </p>
+    </div>
+    """
 content = f"""
-<div style="display:flex; justify-content:center; gap:50px;">
-
-    <div style="width:350px;">
-        <a href='#' id='vid1'>
-            <img
-                src='{image_lis[0]}'
-                style='width:100%; border-radius:12px;'
-            >
-        </a>
-
-        <h4 style='margin-bottom:0px;'>
-            Linear Regression Explained
-        </h4>
-
-        <p style='color:gray; margin-top:5px;'>
-            StatQuest
-        </p>
-    </div>
-
-    <div style="width:350px;">
-        <a href='#' id='vid2'>
-            <img
-                src='{image_lis[1]}'
-                style='width:100%; border-radius:12px;'
-            >
-        </a>
-
-        <h4 style='margin-bottom:0px;'>
-            Neural Networks Amazing video man just watch it!
-        </h4>
-
-        <p style='color:gray; margin-top:5px;'>
-            the young technical guy
-        </p>
-    </div>
-
-    <div style="width:350px;">
-        <a href='#' id='vid3'>
-            <img
-                src='{image_lis[1]}'
-                style='width:100%; border-radius:12px;'
-            >
-        </a>
-
-        <h4 style='margin-bottom:0px;'>
-            Neural Networks
-        </h4>
-
-        <p style='color:gray; margin-top:5px;'>
-            3Blue1Brown
-        </p>
-    </div>
-
-</div>
-
-<div style="display:flex; justify-content:center; gap:50px;">
-
-    <div style="width:350px;">
-        <a href='#' id='vid4'>
-            <img
-                src='{image_lis[0]}'
-                style='width:100%; border-radius:12px;'
-            >
-        </a>
-
-        <h4 style='margin-bottom:0px;'>
-            Linear Regression Explained
-        </h4>
-
-        <p style='color:gray; margin-top:5px;'>
-            StatQuest
-        </p>
-    </div>
-
-    <div style="width:350px;">
-        <a href='#' id='vid5'>
-            <img
-                src='{image_lis[1]}'
-                style='width:100%; border-radius:12px;'
-            >
-        </a>
-
-        <h4 style='margin-bottom:0px;'>
-            Neural Networks Amazing video man just watch it!
-        </h4>
-
-        <p style='color:gray; margin-top:5px;'>
-            the young technical guy
-        </p>
-    </div>
-
-    <div style="width:350px;">
-        <a href='#' id='vid6'>
-            <img
-                src='{image_lis[1]}'
-                style='width:100%; border-radius:12px;'
-            >
-        </a>
-
-        <h4 style='margin-bottom:0px;'>
-            Neural Networks
-        </h4>
-
-        <p style='color:gray; margin-top:5px;'>
-            3Blue1Brown
-        </p>
-    </div>
-
+<div style="
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:50px;
+">
+    {cards}
 </div>
 """
 
