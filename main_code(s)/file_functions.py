@@ -12,7 +12,7 @@ class Fily:
         '''This method takes data from raw_data.json
         and appends to to normal_data.json'''
 
-        with open("raw_data.json", 'r') as f:
+        with open("main_code(s)/json_files/raw_data.json", 'r') as f:
             raw_dict = js.load(f)
 
         videos = raw_dict['items'] #this return list containing video as dict
@@ -111,7 +111,7 @@ class Fily:
         )
         response = request.execute()
         try: 
-            with open('raw_data.json','w') as f:
+            with open('main_code(s)/json_files/raw_data.json','w') as f:
                 js.dump(response,f)
         except Exception as e:
             return 0
@@ -141,10 +141,10 @@ class Fily:
         Reuturn 1 for Successfull Execution Otherwise 0'''
 
         try:
-            with open("vid_detail_streamlit.json", 'r') as f:
+            with open("main_code(s)/json_files/vid_detail_streamlit.json", 'r') as f:
                 loaded_streamlit_dic = js.load(f)
             loaded_streamlit_dic["vids_streamlit"] = vid_list
-            with open("vid_detail_streamlit.json", 'w') as f:
+            with open("main_code(s)/json_files/vid_detail_streamlit.json", 'w') as f:
                 js.dump(loaded_streamlit_dic,f)
         except Exception as e:
             return f"0 Error came oh no..{e}"
@@ -155,7 +155,7 @@ class Fily:
         '''This functoin takes in list of form [vidn, [cosine_similar(top9) videos's id]]  
         to be updated in key "cache" of vid_detail_streamlit.json and updates it'''
         try:
-            with open("vid_detail_streamlit.json", 'r') as f:
+            with open("main_code(s)/json_files/vid_detail_streamlit.json", 'r') as f:
                 loaded_streamlit_dic = js.load(f)
             
         except Exception as e:
@@ -167,7 +167,7 @@ class Fily:
                 temporary.pop()                             #remove very last index item
 
                 loaded_streamlit_dic['cache'] = temporary
-                with open("vid_detail_streamlit.json", 'w') as f:
+                with open("main_code(s)/json_files/vid_detail_streamlit.json", 'w') as f:
                     js.dump(loaded_streamlit_dic,f)
             except Exception as e2:
                 return f"Error oh no..{e2}"
