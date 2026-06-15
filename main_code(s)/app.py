@@ -80,6 +80,12 @@ videos = [
         "title": "Neural Networks",
         "channel": "3Blue1Brown",
         "img": image_lis[1]
+    },
+    {
+        "id": "vid5",
+        "title": "Neural Networks",
+        "channel": "3Blue1Brown",
+        "img": image_lis[1]
     }
     # ...
 ]
@@ -89,7 +95,7 @@ for video in videos:
 
     cards += f"""
     <div style="width:350px;">
-        <a href='#' id='{video["id"]}'>
+        <a href='#' id='{video["id"]}'>  
             <img
                 src='{video["img"]}'
                 style='width:100%; border-radius:12px;'
@@ -105,15 +111,19 @@ for video in videos:
     """
 content = f"""
 <div style="
-    display:flex;
+    display:flex; 
     flex-wrap:wrap;
     justify-content:center;
-    gap:50px;
+    gap:5px;
 ">
     {cards}
 </div>
 """
-
+#what each function does:
+# display:flex;          /* video children go left-to-right */
+# flex-wrap:wrap;        /* start a new row when needed */
+# justify-content:center;/* center the rows */
+# gap:50px;              /* spacing between cards */
 
 clicked = click_detector(content)
 

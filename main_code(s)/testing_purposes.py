@@ -1,5 +1,5 @@
-l = ['yo','hi',3]
-print(enumerate(l))
+from file_functions import Fily
 
-for i in enumerate(l):
-    print(i)
+obj = Fily()
+
+obj.cache_updater(['vid', ['v1', 'v2']])

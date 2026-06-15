@@ -151,9 +151,9 @@ class Fily:
         else:
             return 1
         
-    def cache_updater(self, vid_id):
-        '''This functoin takes in latest video  id to be updated in key "cache" of
-        vid_detail_streamlit.json and updates it'''
+    def cache_updater(self, vid_with_cosine):
+        '''This functoin takes in list of form [vidn, [cosine_similar(top9) videos's id]]  
+        to be updated in key "cache" of vid_detail_streamlit.json and updates it'''
         try:
             with open("vid_detail_streamlit.json", 'r') as f:
                 loaded_streamlit_dic = js.load(f)
@@ -163,7 +163,7 @@ class Fily:
         else:
             try:
                 temporary = loaded_streamlit_dic['cache'] #returns List in cache
-                temporary.insert(0,vid_id)                  #add vid id at index 0
+                temporary.insert(0,vid_with_cosine)                  #add vid id at index 0
                 temporary.pop()                             #remove very last index item
 
                 loaded_streamlit_dic['cache'] = temporary
