@@ -1,6 +1,7 @@
 import numpy as np
 import json as js
 import random
+from file_functions import Fily
 
 class main_control:
     def __init__(self):
@@ -44,15 +45,12 @@ class main_control:
             topn.append(sorted_cosine_list[i][0])
         
         return topn
-    
-    # def update_vid_recommender(self, vid_id):
-    #     top_9 = self.cosine_similar_top_n(vid_id,9)
 
     def random_vid_id_sender(self, how_many):
         '''This Method returns random videos's id in a list format,
         1. how_many : ho  w many videos you want'''
 
-        with open("main_code(s)/json_files/normal_data.json") as f:
+        with open("main_code(s)/json_files/normal_data.json", 'r') as f:
             normal_dic = js.load(f)
 
         all_keys = list(normal_dic.keys()) #random throws TypeError in .keys() dtype('dict_keys' object)
@@ -63,3 +61,6 @@ class main_control:
         
         return random_videos
 
+
+
+        
