@@ -61,6 +61,57 @@ class main_control:
         
         return random_videos
 
+    def update_vid_recommender_with_latest_video(self, vid_id):
+        '''This method takes latest video id(clicked by user)
+        then finds cosine similar and updates the current video list in 
 
+        1. vid_id : latest video clicked video id
+        returns 1 for successfull execution, otherwise 0 '''
+        try:
+            top_9 = self.cosine_similar_top_n(vid_id,3)
 
+            vids_streamlit = list()
+            print(vids_streamlit)
+            with open("main_code(s)/json_files/vid_detail_streamlit.json", 'r') as f:
+                streamlit_json_dic = js.load(f) 
+            
+
+            #Updating the Cache:
+            obj = Fily()
+            obj.cache_updater([vid_id,top_9])
+
+            #Updating for 1
+            vids_streamlit = vids_streamlit + top_9[:5:2] #adds index 0,2,4 elements
+            #Update 2
+            
+            lis_2 = streamlit_json_dic['cache'][1][1]
+            vids_streamlit.append(lis_2[1])
+            vids_streamlit.append(lis_2[3])
+
+            #Update 3
+            lis_3 = streamlit_json_dic['cache'][2][1]
+            vids_streamlit.append(lis_3[5])
+
+            #Update 4
+            lis_4 = streamlit_json_dic['cache'][3][1]
+            vids_streamlit.append(lis_4[6])
+
+            #Update 5
+            lis_5 = streamlit_json_dic['cache'][4][1]
+            vids_streamlit.append(lis_5[7])
+
+            #Update 6
+            lis_6 = streamlit_json_dic['cache'][5][1]
+            vids_streamlit.append(lis_6[8])
+            
+            #Update 7 (random 3 videos)
+            lis_7 = self.random_vid_id_sender(3) #getting 3 random videos's id
+            vids_streamlit = vids_streamlit + lis_7
+
+            #Updating Vid_streamlit
+            obj.vids_streamlit_updater(vids_streamlit)
         
+        except Exception as e:
+            return f"0 : Oh error, {e}"
+        else:
+            return 1

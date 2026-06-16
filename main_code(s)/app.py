@@ -128,3 +128,7 @@ content = f"""
 clicked = click_detector(content)
 
 st.markdown(f"**{clicked} clicked**" if clicked != "" else "**No click**")
+
+if clicked != '':
+    
+    st.switch_page('pages/video.py')
