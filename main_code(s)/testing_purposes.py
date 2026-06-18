@@ -3,6 +3,8 @@ from core_functions import main_control as m
 import ijson as ij
 import time
 import numpy as np
+import json as js
+
 # import random
 
 fily = Fily()
@@ -10,6 +12,10 @@ fily = Fily()
 # # # obj.cache_updater(['vid', ['v1', 'v2']])
 
 core = m()
+
+fily.update_queue('idfjsdlfdn','vid')
+# with open('json_files/queue_video.json','w') as f:
+#                 js.dump({'1':2,"2":3},f)
 
 # # print(ob.random_vid_id_sender(4))
 
@@ -19,7 +25,7 @@ core = m()
 # # print(core.update_vid_recommender('n_JwzBSsrnc'))
 # # print(core.cosine_similar_top_n('n_JwzBSsrnc',3))
 
-print(core.reset_homepage_to_random())
+# print(core.reset_homepage_to_random())
 
 # given_vector_id = "naNcmnKskUE"
 # quantity= 5

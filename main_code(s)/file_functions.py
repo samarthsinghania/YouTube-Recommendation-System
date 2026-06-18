@@ -262,3 +262,29 @@ class Fily:
         
         with open('json_files/vector.json','w') as f:
             js.dump(all_video_vectors_dic,f)
+
+    def update_queue(self,vid_id,key):
+        '''This Function updates the queue with the given video
+        key = '1' or '2' 
+        '1' basically what is updated when video click on homescreen
+        '2' bascially what is updated when video updated in cache '''
+
+        try:
+            with open('json_files/queue_video.json','r') as f:
+                que_dic = js.load(f)
+            if key == '1':
+                que_dic['first'] = vid_id # updates the key
+            elif key =='2':
+                que_dic['second'] = vid_id 
+            else:
+                raise Exception("Sorry, only '1' or '2'")
+
+            with open('json_files/queue_video.json','w') as f:
+                js.dump(que_dic,f)
+
+        except Exception as e:
+            return f"0, ok error: {e}"
+        else:
+            return 1
+
+
