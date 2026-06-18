@@ -129,8 +129,8 @@ class main_control:
             #iterate
             cache = []
             for vid in random_vids:
-                similar = self.cosine_similar_top_n(vid,9)
-                pair = [vid, similar] #to match catch for format in cache
+                other_videos = self.random_vid_id_sender(9)
+                pair = [vid, other_videos] #to match catch for format in cache
                 cache.append(pair)
 
             self.fily_obj.cache_updater(cache)
