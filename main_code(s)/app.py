@@ -3,6 +3,10 @@ import time
 import json as js
 from st_clickable_images import clickable_images
 from st_click_detector import click_detector
+from core_functions import main_control
+ 
+#Object initialisation
+core = main_control()
 
 #Page title 
 st.set_page_config(page_title="YT RS", page_icon = 'resources/icon.png',layout="wide")
@@ -50,45 +54,36 @@ image_lis2 = ["https://images.unsplash.com/photo-1565372195458-9de0b320ef04?w=70
 # )
 # st.markdown(f"Image #{clicked} clicked" if clicked > -1 else "No image clicked")
 
+#here we gather video data:
+with open('json_files/normal_data.json','r') as f:
+    normal_data = js.load(f)
+
+
+#here we gather video data:
+with open('json_files/vid_detail_streamlit.json','r') as f:
+    vid_detail = js.load(f)
+
+all_vid = vid_detail['vids_streamlit'] #all videos in list
+
+vid_data = []
+for vid in all_vid:
+    title = normal_data[vid][1]
+    img = normal_data[vid][0]
+    vid_data.append([vid,title,img])
+
+#vid_data format:
+# [[vid1],[vid2]...., [vid9]]
+#for each vid-> [id,title,thumbnail_link]
+
 videos = [
     {
-        "id": "vid1",
-        "title": "Linear Regression Explained",
+        "id": vid_data[n][0],
+        "title": vid_data[n][1],
         "channel": "StatQuest",
-        "img": image_lis[0]
-    },
-    {
-        "id": "vid2",
-        "title": "Neural Networks Amazing video man just watch it!",
-        "channel": "The Young Technical Guy",
-        "img": image_lis[1]
-    },
-    {
-        "id": "vid3",
-        "title": "Neural Networks",
-        "channel": "3Blue1Brown",
-        "img": image_lis[1]
-    },
-    {
-        "id": "vid4",
-        "title": "Neural Networks",
-        "channel": "3Blue1Brown",
-        "img": image_lis[1]
-    },
-    {
-        "id": "vid5",
-        "title": "Neural Networks",
-        "channel": "3Blue1Brown",
-        "img": image_lis[1]
-    },
-    {
-        "id": "vid5",
-        "title": "Neural Networks",
-        "channel": "3Blue1Brown",
-        "img": image_lis[1]
+        "img": vid_data[n][2]
     }
-    # ...
-]
+    for n in range(12)]
+#this is a list-comprehension 
 cards = ""
 
 for video in videos:
@@ -104,9 +99,6 @@ for video in videos:
 
         <h4>{video["title"]}</h4>
 
-        <p style='color:gray;'>
-            {video["channel"]}
-        </p>
     </div>
     """
 content = f"""
@@ -125,10 +117,9 @@ content = f"""
 # justify-content:center;/* center the rows */
 # gap:50px;              /* spacing between cards */
 
-clicked = click_detector(content)
+clicked = click_detector(content) 
 
 st.markdown(f"**{clicked} clicked**" if clicked != "" else "**No click**")
 
 if clicked != '':
-    
     st.switch_page('pages/video.py')

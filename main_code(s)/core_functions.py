@@ -16,7 +16,7 @@ class main_control:
         Returns the vid id of top n in list format'''
 
         
-        with open("main_code(s)/json_files/vector.json", "r") as f: #vectorjso contains
+        with open("json_files/vector.json", "r") as f: #vectorjso contains
             vidinfo = js.load(f)
             
         #its(vidinfo) in form: d ={'vidid': vector,..}
@@ -51,7 +51,7 @@ class main_control:
         '''This Method returns random videos's id in a list format,
         1. how_many : ho  w many videos you want'''
 
-        with open("main_code(s)/json_files/normal_data.json", 'r') as f:
+        with open("json_files/normal_data.json", 'r') as f:
             normal_dic = js.load(f)
 
         all_keys = list(normal_dic.keys()) #random throws TypeError in .keys() dtype('dict_keys' object)
@@ -73,7 +73,7 @@ class main_control:
 
             vids_streamlit = list()
             print(vids_streamlit)
-            with open("main_code(s)/json_files/vid_detail_streamlit.json", 'r') as f:
+            with open("json_files/vid_detail_streamlit.json", 'r') as f:
                 streamlit_json_dic = js.load(f) 
             
 
@@ -124,7 +124,7 @@ class main_control:
 
         try:
             #gathering random video id
-            random_vids = self.random_vid_id_sender(9)
+            random_vids = self.random_vid_id_sender(12)
 
             #iterate
             cache = []
@@ -140,4 +140,3 @@ class main_control:
             return f"0, Sorry error: {e}"
         else:
             return 1
-    
