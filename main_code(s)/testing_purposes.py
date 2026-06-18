@@ -13,5 +13,7 @@ core = m()
 # fily.cache_updater(['f',["id1", "id2", "id3", "id4", "id5", "id5"]])
 # print(core.random_vid_id_sender(4))
 print('hi')
-print(core.update_vid_recommender('n_JwzBSsrnc'))
+# print(core.update_vid_recommender('n_JwzBSsrnc'))
 # print(core.cosine_similar_top_n('n_JwzBSsrnc',3))
+
+print(core.reset_homepage_to_random())

@@ -24,7 +24,7 @@ hide_default_format = """
        """
 st.markdown(hide_default_format, unsafe_allow_html=True)
 
-#tex
+#text
 st.text('HELLO THIS IS AN APPs')
 
 #sidebar

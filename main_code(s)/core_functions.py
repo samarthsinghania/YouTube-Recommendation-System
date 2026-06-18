@@ -6,6 +6,7 @@ from file_functions import Fily
 class main_control:
     def __init__(self):
         self.vidid = None
+        self.fily_obj = Fily()
         #To Do: Random video'er here(which puts random videos for first time)
 
     def cosine_similar_top_n(self, given_vector_id, quantity):
@@ -115,3 +116,28 @@ class main_control:
             return f"0 : Oh error, {e}"
         else:
             return 1
+    
+    def reset_homepage_to_random(self):
+        '''This Method resets the video data in vid_Details_streamlit.json to random videos
+        return 1 for success
+        return 0 other wise + the error'''
+
+        try:
+            #gathering random video id
+            random_vids = self.random_vid_id_sender(9)
+
+            #iterate
+            cache = []
+            for vid in random_vids:
+                similar = self.cosine_similar_top_n(vid,9)
+                pair = [vid, similar] #to match catch for format in cache
+                cache.append(pair)
+
+            self.fily_obj.cache_updater(cache)
+            self.fily_obj.vids_streamlit_updater(random_vids)
+        
+        except Exception as e:
+            return f"0, Sorry error: {e}"
+        else:
+            return 1
+    
