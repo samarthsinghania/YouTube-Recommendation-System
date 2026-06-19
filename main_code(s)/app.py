@@ -3,9 +3,11 @@ import time
 import json as js
 from st_clickable_images import clickable_images
 from st_click_detector import click_detector
+from file_functions import Fily
 from core_functions import main_control
  
 #Object initialisation
+fily = Fily()
 core = main_control()
 
 #Page title 
@@ -53,6 +55,8 @@ image_lis2 = ["https://images.unsplash.com/photo-1565372195458-9de0b320ef04?w=70
 #     img_style={"margin": "5px", "height": "200px"},
 # )
 # st.markdown(f"Image #{clicked} clicked" if clicked > -1 else "No image clicked")
+
+
 
 #here we gather video data:
 with open('json_files/normal_data.json','r') as f:
@@ -122,4 +126,18 @@ clicked = click_detector(content)
 st.markdown(f"**{clicked} clicked**" if clicked != "" else "**No click**")
 
 if clicked != '':
+    #updating first queue
+    # print(fily.update_queue(clicked,'1')) #this isnt working for some reason..
+    with open('json_files/queue_video.json','w') as f:
+        js.dump({'first':clicked},f)
+
+    # core.update_vid_recommender_with_latest_video(clicked)
+
+    #Changing the page
     st.switch_page('pages/video.py')
+
+reset_button = st.button("Reset")
+
+if reset_button:
+    fily.update_queue(0,'1')
+    core.reset_homepage_to_random()

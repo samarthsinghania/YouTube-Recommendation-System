@@ -69,7 +69,8 @@ class main_control:
         1. vid_id : latest video clicked video id
         returns 1 for successfull execution, otherwise 0 '''
         try:
-            top_9 = self.cosine_similar_top_n(vid_id,3)
+        # while 1:
+            top_9 = self.cosine_similar_top_n(vid_id,9)
 
             vids_streamlit = list()
             print(vids_streamlit)
@@ -82,10 +83,15 @@ class main_control:
             obj.cache_updater([vid_id,top_9])
 
             #Updating for 1
-            vids_streamlit = vids_streamlit + top_9[:5:2] #adds index 0,2,4 elements
+            # vids_streamlit = vids_streamlit + top_9[:5:2] #adds index 0,2,4 elements
+            vids_streamlit.append(top_9[0])
+            vids_streamlit.append(top_9[2])
+            vids_streamlit.append(top_9[4])
+            print(top_9)
             #Update 2
-            
+            print('fine')
             lis_2 = streamlit_json_dic['cache'][1][1]
+            print('fine')
             vids_streamlit.append(lis_2[1])
             vids_streamlit.append(lis_2[3])
 
@@ -95,10 +101,14 @@ class main_control:
 
             #Update 4
             lis_4 = streamlit_json_dic['cache'][3][1]
+            print("meow1")
+            print("Here: ", lis_4)
             vids_streamlit.append(lis_4[6])
 
             #Update 5
             lis_5 = streamlit_json_dic['cache'][4][1]
+            print("meow")
+            print("Here: ", lis_5)
             vids_streamlit.append(lis_5[7])
 
             #Update 6

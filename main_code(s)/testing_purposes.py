@@ -13,7 +13,7 @@ fily = Fily()
 
 core = m()
 
-fily.update_queue('idfjsdlfdn','vid')
+# fily.update_queue('idfjsdlfdn','3')
 # with open('json_files/queue_video.json','w') as f:
 #                 js.dump({'1':2,"2":3},f)
 
@@ -25,7 +25,7 @@ fily.update_queue('idfjsdlfdn','vid')
 # # print(core.update_vid_recommender('n_JwzBSsrnc'))
 # # print(core.cosine_similar_top_n('n_JwzBSsrnc',3))
 
-# print(core.reset_homepage_to_random())
+print(core.reset_homepage_to_random())
 
 # given_vector_id = "naNcmnKskUE"
 # quantity= 5
