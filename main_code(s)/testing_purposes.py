@@ -25,7 +25,8 @@ core = m()
 # # print(core.update_vid_recommender('n_JwzBSsrnc'))
 # # print(core.cosine_similar_top_n('n_JwzBSsrnc',3))
 
-print(core.reset_homepage_to_random())
+# print(core.reset_homepage_to_random())
+print(core.update_vid_recommender_with_latest_video('_9ys5JmBlgI'))
 
 # given_vector_id = "naNcmnKskUE"
 # quantity= 5
