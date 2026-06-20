@@ -89,9 +89,7 @@ class main_control:
             vids_streamlit.append(top_9[4])
             print(top_9)
             #Update 2
-            print('fine')
             lis_2 = streamlit_json_dic['cache'][1][1]
-            print('fine')
             vids_streamlit.append(lis_2[1])
             vids_streamlit.append(lis_2[3])
 
@@ -101,14 +99,10 @@ class main_control:
 
             #Update 4
             lis_4 = streamlit_json_dic['cache'][3][1]
-            print("meow1")
-            print("Here: ", lis_4)
             vids_streamlit.append(lis_4[6])
 
             #Update 5
             lis_5 = streamlit_json_dic['cache'][4][1]
-            print("meow")
-            print("Here: ", lis_5)
             vids_streamlit.append(lis_5[7])
 
             #Update 6
@@ -135,15 +129,25 @@ class main_control:
         try:
             #gathering random video id
             random_vids = self.random_vid_id_sender(12)
+            
+            #getting the streamlit dictionary full json
+            with open("json_files/vid_detail_streamlit.json", 'r') as f:
+                loaded_streamlit_dic = js.load(f)
 
             #iterate
             cache = []
+            #Updating the cache with random videos
             for vid in random_vids:
                 other_videos = self.random_vid_id_sender(9)
                 pair = [vid, other_videos] #to match catch for format in cache
                 cache.append(pair)
 
-            self.fily_obj.cache_updater(cache)
+            #Updating cache inside the file
+            loaded_streamlit_dic['cache'] = cache
+            with open("json_files/vid_detail_streamlit.json", 'w') as f:
+                js.dump(loaded_streamlit_dic,f)
+                
+
             self.fily_obj.vids_streamlit_updater(random_vids)
         
         except Exception as e:

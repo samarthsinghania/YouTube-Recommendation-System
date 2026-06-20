@@ -126,10 +126,7 @@ st.markdown(f"**{clicked} clicked**" if clicked != "" else "**No click**")
 
 if clicked != '':
     #updating first queue
-    # print(fily.update_queue(clicked,'1')) #this isnt working for some reason..
-    with open('json_files/queue_video.json','w') as f:
-        js.dump({'first':clicked},f)
-
+    print(fily.update_queue(clicked,'1')) 
     # core.update_vid_recommender_with_latest_video(clicked)
 
     #Changing the page
