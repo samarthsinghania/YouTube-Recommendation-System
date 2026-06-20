@@ -128,6 +128,7 @@ st.markdown(f"**{clicked} clicked**" if clicked != "" else "**No click**")
 if clicked != '':
     #updating first queue
     print(fily.update_queue(clicked,'1')) 
+    fily.update_queue(0,'2')
 
     #Changing the page
     st.switch_page('pages/video.py')
