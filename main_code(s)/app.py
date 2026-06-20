@@ -31,12 +31,11 @@ hide_default_format = """
 st.markdown(hide_default_format, unsafe_allow_html=True)
 
 #text
-st.text('HELLO THIS IS AN APPs')
+st.text('YT would recommend you whatever you like to watch')
 
 #sidebar
 with st.sidebar:
     st.text("HEy Welcome to Youtube")
-    st.image("https://images.unsplash.com/photo-1565372195458-9de0b320ef04?w=700")
 
 
 image_lis = [
