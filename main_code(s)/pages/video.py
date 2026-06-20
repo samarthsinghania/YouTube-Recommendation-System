@@ -2,6 +2,7 @@ import streamlit as st
 import json as js
 from file_functions import Fily
 from core_functions import main_control
+import time
  
 #Object initialisation
 fily = Fily()
@@ -17,11 +18,18 @@ st.text('hola yo soy dora')
 
 
 #updating the recommendation
+time_start = time.time()
 print(core.update_vid_recommender_with_latest_video(vid_id))
-
+print(time.time()-time_start)
 
 #Back button Logic
 button = st.button("go back")
 
 if button:
+    progress_text = "Operation in progress. Please wait."
+    my_bar = st.progress(0, text=progress_text)
+    for percent_complete in range(100):
+        time.sleep(0.01)
+        my_bar.progress(percent_complete + 1, text=progress_text)
+    
     st.switch_page('app.py')

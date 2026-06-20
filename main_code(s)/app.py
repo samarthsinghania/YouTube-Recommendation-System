@@ -104,6 +104,7 @@ for video in videos:
 
     </div>
     """
+    
 content = f"""
 <div style="
     display:flex; 
@@ -127,7 +128,6 @@ st.markdown(f"**{clicked} clicked**" if clicked != "" else "**No click**")
 if clicked != '':
     #updating first queue
     print(fily.update_queue(clicked,'1')) 
-    # core.update_vid_recommender_with_latest_video(clicked)
 
     #Changing the page
     st.switch_page('pages/video.py')

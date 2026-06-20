@@ -143,7 +143,9 @@ class Fily:
         try:
             with open("json_files/vid_detail_streamlit.json", 'r') as f:
                 loaded_streamlit_dic = js.load(f)
+
             loaded_streamlit_dic["vids_streamlit"] = vid_list
+            
             with open("json_files/vid_detail_streamlit.json", 'w') as f:
                 js.dump(loaded_streamlit_dic,f)
         except Exception as e:

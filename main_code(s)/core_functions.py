@@ -70,9 +70,9 @@ class main_control:
         returns 1 for successfull execution, otherwise 0 '''
         try:
         # while 1:
-            top_9 = self.cosine_similar_top_n(vid_id,9)
+            top_9 = self.cosine_similar_top_n(vid_id,9) #finding top 9 cosine
 
-            vids_streamlit = list()
+            vids_streamlit = list() #streamlit json second key
             print(vids_streamlit)
             with open("json_files/vid_detail_streamlit.json", 'r') as f:
                 streamlit_json_dic = js.load(f) 
@@ -137,10 +137,15 @@ class main_control:
             #iterate
             cache = []
             #Updating the cache with random videos
+            counter = 0
             for vid in random_vids:
-                other_videos = self.random_vid_id_sender(9)
-                pair = [vid, other_videos] #to match catch for format in cache
-                cache.append(pair)
+                counter +=1
+                if counter<7:
+                    other_videos = self.random_vid_id_sender(9)
+                    pair = [vid, other_videos] #to match catch for format in cache
+                    cache.append(pair)
+                else:
+                    break
 
             #Updating cache inside the file
             loaded_streamlit_dic['cache'] = cache
