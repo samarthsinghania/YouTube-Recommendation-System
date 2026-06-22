@@ -4,6 +4,7 @@ from file_functions import Fily
 from core_functions import main_control
 import time
 import ijson
+import streamlit.components.v1 as components
 
 #Object initialisation
 fily = Fily()
@@ -14,8 +15,32 @@ with open('json_files/queue_video.json','r') as f:
     que_dic = js.load(f)
 if que_dic['second'] !=1: #if not 1
     vid_id = que_dic['first']
-    st.video(f"https://www.youtube.com/watch?v={vid_id}", autoplay=True)
-
+    print("The vid id is:", vid_id)
+    # st.video(f"https://www.youtube.com/watch?v={vid_id}", autoplay=True)
+    components.html(
+        f"""<div style="
+        position: relative;
+        width: 70%;
+        padding-bottom: 56.25%;
+        height: 0;
+    ">
+        <iframe
+            src="https://www.youtube.com/embed/{vid_id}"
+            style="
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border: none;
+            "
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen>
+        </iframe>
+    </div>
+        """,
+        height=500
+    )   
 #Video title logic:
 if que_dic['second'] !=1:
     with open('json_files/normal_data.json') as f:

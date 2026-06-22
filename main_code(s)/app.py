@@ -14,7 +14,7 @@ core = main_control()
 st.set_page_config(page_title="YT RS", page_icon = 'resources/icon.png',layout="wide")
 
 #Logo
-st.logo(image='resources/icon.png', size="large")
+# st.logo(image='resources/icon.png', size="large")
 st.header('YouTube Recommendation System')
 
 
