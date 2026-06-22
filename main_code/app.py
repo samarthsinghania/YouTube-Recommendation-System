@@ -11,7 +11,7 @@ fily = Fily()
 core = main_control()
 
 #Page title 
-st.set_page_config(page_title="YT RS", page_icon = 'resources/icon.png',layout="wide")
+st.set_page_config(page_title="YT RS", page_icon = 'main_code/resources/icon.png',layout="wide")
 
 #Logo
 # st.logo(image='resources/icon.png', size="large")
@@ -59,12 +59,12 @@ image_lis2 = ["https://images.unsplash.com/photo-1565372195458-9de0b320ef04?w=70
 
 
 #here we gather video data:
-with open('json_files/normal_data.json','r') as f:
+with open('main_code/json_files/normal_data.json','r') as f:
     normal_data = js.load(f)
 
 
 #here we gather video data:
-with open('json_files/vid_detail_streamlit.json','r') as f:
+with open('main_code/json_files/vid_detail_streamlit.json','r') as f:
     vid_detail = js.load(f)
 
 all_vid = vid_detail['vids_streamlit'] #all videos in list

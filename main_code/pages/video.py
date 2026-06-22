@@ -11,7 +11,7 @@ fily = Fily()
 core = main_control()
 
 
-with open('json_files/queue_video.json','r') as f:
+with open('main_code/json_files/queue_video.json','r') as f:
     que_dic = js.load(f)
 if que_dic['second'] !=1: #if not 1
     vid_id = que_dic['first']
@@ -43,7 +43,7 @@ if que_dic['second'] !=1: #if not 1
     )   
 #Video title logic:
 if que_dic['second'] !=1:
-    with open('json_files/normal_data.json') as f:
+    with open('main_code/json_files/normal_data.json') as f:
         for key, value in ijson.kvitems(f, ""):
             if key==vid_id:
                 vid_title = value[1] #value looks like: [thumbnail, title, description]

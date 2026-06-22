@@ -12,7 +12,7 @@ class Fily:
         '''This method takes data from raw_data.json
         and appends to to normal_data.json'''
 
-        with open("json_files/raw_data.json", 'r') as f:
+        with open("main_code/json_files/raw_data.json", 'r') as f:
             raw_dict = js.load(f)
 
         videos = raw_dict['items'] #this return list containing video as dict
@@ -27,7 +27,7 @@ class Fily:
         except Exception as e:
             return f"0, error cam oh no,{e}"
         else:
-            self.dictionary_data_appender(vid,"json_files/normal_data.json")
+            self.dictionary_data_appender(vid,"main_code/json_files/normal_data.json")
             return 1
         
 
@@ -111,7 +111,7 @@ class Fily:
         )
         response = request.execute()
         try: 
-            with open('json_files/raw_data.json','w') as f:
+            with open('main_code/json_files/raw_data.json','w') as f:
                 js.dump(response,f)
         except Exception as e:
             return 0
@@ -141,12 +141,12 @@ class Fily:
         Reuturn 1 for Successfull Execution Otherwise 0'''
 
         try:
-            with open("json_files/vid_detail_streamlit.json", 'r') as f:
+            with open("main_code/json_files/vid_detail_streamlit.json", 'r') as f:
                 loaded_streamlit_dic = js.load(f)
 
             loaded_streamlit_dic["vids_streamlit"] = vid_list
             
-            with open("json_files/vid_detail_streamlit.json", 'w') as f:
+            with open("main_code/json_files/vid_detail_streamlit.json", 'w') as f:
                 js.dump(loaded_streamlit_dic,f)
         except Exception as e:
             return f"0 Error came oh no..{e}"
@@ -157,7 +157,7 @@ class Fily:
         '''This functoin takes in list of form [vidn, [cosine_similar(top9) videos's id]]  
         to be updated in key "cache" of vid_detail_streamlit.json and updates it'''
         try:
-            with open("json_files/vid_detail_streamlit.json", 'r') as f:
+            with open("main_code/json_files/vid_detail_streamlit.json", 'r') as f:
                 loaded_streamlit_dic = js.load(f)
             
         except Exception as e:
@@ -169,7 +169,7 @@ class Fily:
                 temporary.pop()                             #remove very last index item
 
                 loaded_streamlit_dic['cache'] = temporary
-                with open("json_files/vid_detail_streamlit.json", 'w') as f:
+                with open("main_code/json_files/vid_detail_streamlit.json", 'w') as f:
                     js.dump(loaded_streamlit_dic,f)
             except Exception as e2:
                 return f"Error oh no..{e2}"
@@ -177,7 +177,7 @@ class Fily:
                 return 1
             
     def video_all_words_gen(self):
-        with open("json_files/normal_data.json", 'r') as f:
+        with open("main_code/json_files/normal_data.json", 'r') as f:
             normal_data = js.load(f) #this is a dictionary
         count =0
 
@@ -197,7 +197,7 @@ class Fily:
                 
                 count+=1
                 print(f'Done: {count},{normal_vid_data[1][:20]}')
-            self.dictionary_data_appender(final_dic,'json_files/video_words.json')
+            self.dictionary_data_appender(final_dic,'main_code/json_files/video_words.json')
 
         except Exception as e:
             return f"0 Oh no error. {e}"
@@ -211,14 +211,14 @@ class Fily:
 
         non_veg = {"chicken", "fish","anda","murga","meat", "egg", "eggs", "mutton", "beef", "pork", "lamb", "prawn", "shrimp", "crab", "lobster", "bacon", "turkey"}
 
-        with open('json_files/video_words.json', 'r') as f:
+        with open('main_code/json_files/video_words.json', 'r') as f:
             data = js.load(f)
 
         clean = {vid_id: words for vid_id, words in data.items()
                 if not any(word.lower() in non_veg for word in words)}
             
         try:
-            with open('json_files/video_words.json', 'w') as f:
+            with open('main_code/json_files/video_words.json', 'w') as f:
                 js.dump(clean,f)
         except Exception as e:
             return f"0 oh no error, {e}"
@@ -226,7 +226,7 @@ class Fily:
             return 1
         
     def all_vector_words_creator(self):
-        with open("json_files/video_words.json", 'r') as f:
+        with open("main_code/json_files/video_words.json", 'r') as f:
             all_video_dic = js.load(f)
 
         all_word_list = list()
@@ -239,7 +239,7 @@ class Fily:
                 all_word_list = list(set(all_word_list))
                 count = 0
         try:
-            with open('json_files/all_video_words.json', 'w') as f:
+            with open('main_code/json_files/all_video_words.json', 'w') as f:
                 js.dump(all_word_list,f)
         except Exception as e:
             return f"0, Oof error.. how. {e}"
@@ -249,10 +249,10 @@ class Fily:
     def all_videos_vector_json_maker(self):
         '''This Method creates videos Vectors in vector.json'''
         
-        with open('json_files/all_video_words.json', 'r') as f:
+        with open('main_code/json_files/all_video_words.json', 'r') as f:
             all_word_list = js.load(f)
 
-        with open('json_files/video_words.json','r') as f:
+        with open('main_code/json_files/video_words.json','r') as f:
             all_vid_words = js.load(f)
         
         all_video_vectors_dic = {}
@@ -262,7 +262,7 @@ class Fily:
             vector = self.vector_creator(vid_lis,all_word_list)
             all_video_vectors_dic[vid_id] = vector
         
-        with open('json_files/vector.json','w') as f:
+        with open('main_code/json_files/vector.json','w') as f:
             js.dump(all_video_vectors_dic,f)
 
     def update_queue(self,vid_id,key):
@@ -272,7 +272,7 @@ class Fily:
         '2' bascially what is updated when video updated in cache '''
 
         try:
-            with open('json_files/queue_video.json','r') as f:
+            with open('main_code/json_files/queue_video.json','r') as f:
                 que_dic = js.load(f)
             if key == '1':
                 que_dic['first'] = vid_id # updates the key
@@ -281,12 +281,13 @@ class Fily:
             else:
                 raise Exception("Sorry, only '1' or '2'")
 
-            with open('json_files/queue_video.json','w') as f:
+            with open('main_code/json_files/queue_video.json','w') as f:
                 js.dump(que_dic,f)
 
         except Exception as e:
             return f"0, ok error: {e}"
         else:
             return 1
+
 
 

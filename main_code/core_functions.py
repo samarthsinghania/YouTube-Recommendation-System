@@ -16,7 +16,7 @@ class main_control:
         Returns the vid id of top n in list format'''
 
         
-        with open("json_files/vector.json", "r") as f: #vectorjso contains
+        with open("main_code/json_files/vector.json", "r") as f: #vectorjso contains
             vidinfo = js.load(f)
             
         #its(vidinfo) in form: d ={'vidid': vector,..}
@@ -51,7 +51,7 @@ class main_control:
         '''This Method returns random videos's id in a list format,
         1. how_many : ho  w many videos you want'''
 
-        with open("json_files/normal_data.json", 'r') as f:
+        with open("main_code/json_files/normal_data.json", 'r') as f:
             normal_dic = js.load(f)
 
         all_keys = list(normal_dic.keys()) #random throws TypeError in .keys() dtype('dict_keys' object)
@@ -74,7 +74,7 @@ class main_control:
 
             vids_streamlit = list() #streamlit json second key
             print(vids_streamlit)
-            with open("json_files/vid_detail_streamlit.json", 'r') as f:
+            with open("main_code/json_files/vid_detail_streamlit.json", 'r') as f:
                 streamlit_json_dic = js.load(f) 
             
 
@@ -131,7 +131,7 @@ class main_control:
             random_vids = self.random_vid_id_sender(12)
             
             #getting the streamlit dictionary full json
-            with open("json_files/vid_detail_streamlit.json", 'r') as f:
+            with open("main_code/json_files/vid_detail_streamlit.json", 'r') as f:
                 loaded_streamlit_dic = js.load(f)
 
             #iterate
@@ -149,7 +149,7 @@ class main_control:
 
             #Updating cache inside the file
             loaded_streamlit_dic['cache'] = cache
-            with open("json_files/vid_detail_streamlit.json", 'w') as f:
+            with open("main_code/json_files/vid_detail_streamlit.json", 'w') as f:
                 js.dump(loaded_streamlit_dic,f)
                 
 
